@@ -7,7 +7,7 @@ router.get('/', (req, res) => res.redirect(307, '/documents'))
 
 router.route('/documents')
   .get((req, res) => {
-    collection.find({}, '-_id')
+    collection.find({})
       .then(docs => res.json(docs))
       .catch(err => res.send(err))
   })
@@ -19,7 +19,7 @@ router.route('/documents')
 
 router.route('/documents/:id')
   .get((req, res) => {
-    collection.find({ _id: req.params.id })
+    collection.findOne({ _id: req.params.id })
       .then(doc => res.json(doc))
       .catch(err => res.send(err))
   })
